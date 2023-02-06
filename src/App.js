@@ -6,6 +6,7 @@ import Articles from "./components/AllArticles";
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<Header />} />
         <Route path="/articles" element={<Articles />} />

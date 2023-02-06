@@ -35,3 +35,100 @@ export default Topics;
 
 <Route path="/articles/topics/" element={<Topics />} />
 
+
+some previous styling:
+
+/* .article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.article_img {
+  width: 300px;
+  height: 220px;
+  margin-right: 10px;
+}
+
+.article_title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.article_author {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.article_topic {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.article_date_published {
+  font-size: 16px;
+  color: gray;
+}
+
+@media only screen and (max-width: 767px) {
+  .article {
+    flex-direction: column;
+  }
+  .article_img {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+  .article_title {
+    text-align: center;
+  }
+  .article_author,
+  .article_topic,
+  .article_date_published {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+} */
+
+/* li {
+  list-style-type: none;
+}
+.article_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.article {
+  width: calc(33.33% - 20px);
+  background-color: lightgray;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.article_img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.article_title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.article_author,
+.article_topic,
+.article_date_published {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 10px;
+  text-align: center;
+} */
+
