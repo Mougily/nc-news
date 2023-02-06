@@ -1,6 +1,42 @@
-.App {
-  text-align: center;
-}
+import { useState, useEffect } from "react";
+import { getTopics } from "../utils/ApiCalls";
+
+const Topics = () => {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    getTopics().then((topics) => {
+      console.log(topics);
+      setTopics(topics);
+    });
+  }, []);
+
+  const changeHandler = (event) => {
+    setTopics(event.target.value);
+  };
+  return (
+    <div>
+      <p>Select a topic</p>
+      <select onChange={(event) => changeHandler(event)}>
+        <option value={""}>all</option>
+        {topics.map((topic) => {
+          return (
+            <option key={topic} value={topic}>
+              {topic}
+            </option>
+          );
+        })}
+      </select>
+      <button>Topics</button>
+    </div>
+  );
+};
+export default Topics;
+
+<Route path="/articles/topics/" element={<Topics />} />
+
+
+some previous styling:
 
 /* .article {
   display: flex;
@@ -96,64 +132,3 @@
   text-align: center;
 } */
 
-li {
-  list-style-type: none;
-}
-
-.article_container {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px; */
-
-  display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
-  grid-gap: 20px;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  /* .article_container {
-    grid-template-columns: repeat(2, 1fr);
-  } */
-  .article_container {
-    grid-template-columns: repeat(1, minmax(100%, 1fr));
-  }
-}
-
-@media (max-width: 576px) {
-  .article_container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.article {
-  background-color: rgb(222, 57, 21);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.article_img {
-  width: 100%;
-  height: 200px;
-  margin-bottom: 10px;
-  border: 5px solid #555;
-  border-color: aliceblue;
-  border-radius: 15px;
-}
-
-.article_title {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.article_author,
-.article_topic,
-.article_date_published {
-  font-size: 16px;
-  color: rgb(128, 128, 128);
-  margin-bottom: 10px;
-  text-align: center;
-}
