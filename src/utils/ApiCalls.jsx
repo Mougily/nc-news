@@ -11,3 +11,10 @@ export const getTopics = () => {
     });
   });
 };
+
+export const getArticles = () => {
+  return apiCaller.get("/articles").then((response) => {
+    console.log(response.data.articles);
+    return response.data.articles;
+  });
+};
