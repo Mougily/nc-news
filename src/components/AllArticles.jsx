@@ -1,15 +1,23 @@
 import { getArticles } from "../utils/ApiCalls";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     getArticles().then((articles) => {
       setArticles(articles);
+      setLoading(false);
     });
-  }, [articles]);
+  }, []);
 
+  if (loading) {
+    return <h2>Still loading...</h2>;
+  }
   return (
     <div>
       <ul>
@@ -41,6 +49,7 @@ const Articles = () => {
                       <p className="article_date_published">
                         date published: {created_at}
                       </p>
+                      <Link to={`/articles/${article_id}`}>view article</Link>
                     </div>
                   </div>
                 </div>
