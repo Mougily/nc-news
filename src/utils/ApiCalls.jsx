@@ -25,10 +25,22 @@ export const getArticleById = (article_id) => {
   });
 };
 
-export const voteOnArticle = (article_id) => {
+export const voteUpOnArticle = (article_id) => {
   return apiCaller
     .patch(`/articles/${article_id}`, { inc_votes: 1 })
     .then((response) => {
       return response.data.article;
     });
+};
+
+export const voteDownOnArticle = (article_id) => {
+  return apiCaller
+    .patch(`/articles/${article_id}`, { inc_votes: -1 })
+    .then((response) => {
+      return response.data.article;
+    });
+};
+
+export const getArticleCommentsById = (article_id) => {
+  return apiCaller.get(`articles/${article_id}/comments`);
 };

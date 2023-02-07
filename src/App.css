@@ -18,6 +18,12 @@ li {
   align-items: center;
 }
 
+@media (max-width: 1024px) {
+  .article_container {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .article_container {
     grid-template-columns: repeat(1, minmax(100%, 1fr));
@@ -27,6 +33,51 @@ li {
 @media (max-width: 576px) {
   .article_container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .single_article_title {
+    font-size: 40px;
+  }
+
+  .article_title {
+    font-size: 16px;
+  }
+
+  .single_article_img {
+    width: 300px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .single_article_title {
+    font-size: 30px;
+  }
+
+  .article_title {
+    font-size: 14px;
+  }
+
+  .single_article_img {
+    width: 200px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .article_container {
+    grid-template-columns: 1fr;
+  }
+  .article_comments_container {
+    grid-template-columns: 1fr;
+  }
+  .individual_comment {
+    grid-template-columns: 1fr;
+  }
+  .single_article_img {
+    width: 100%;
   }
 }
 
@@ -87,15 +138,74 @@ li {
 }
 
 .article_body {
-  border: 5px solid rgb(222, 57, 21);
-  background-color: gray;
   display: ruby-text-container;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
   justify-content: space-between;
-  padding: 2rem;
-  margin: 6rem;
   border-radius: 15px;
+}
+
+.article_comments_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 20px;
+  border: 1px solid rgb(165, 160, 159);
+}
+
+.individual_comment {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "author" "body" "votes";
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(222, 57, 21);
+}
+
+.comment_author {
+  font-family: monospace;
+  font-size: 15px;
+  color: rgb(24, 22, 22);
+  grid-area: author;
+}
+
+.comment_body {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+  grid-area: body;
+}
+
+.comment_votes {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+  grid-area: votes;
+}
+
+.comment_button {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+  background-color: grey;
+  box-shadow: 0 10px 10px #555;
+  border-radius: 15px;
+}
+
+button {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+  background-color: grey;
+  box-shadow: 0 10px 10px #555;
+  border-radius: 15px;
+}
+
+@media only screen and (max-width: 767px) {
+  .article_comments_container {
+    grid-template-columns: 1fr;
+  }
+
+  .individual_comment {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
 }
