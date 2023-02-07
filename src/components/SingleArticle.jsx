@@ -7,6 +7,7 @@ const SingleArticle = () => {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
+
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -48,17 +49,22 @@ const SingleArticle = () => {
       {showComments && (
         <div className="article_comments_container">
           <h2>comments</h2>
-          {comments.data.comments.map((comment) => (
-            <div key={comment.comment_id} className="individual_comment">
-              <ol className="comment_author">Author: {comment.author}</ol>
-              <ol className="comment_body">Comment: {comment.body}</ol>
-              <ol className="comment_votes">Votes: {comment.votes}</ol>
-            </div>
-          ))}
+          {comments.data.comments.length > 0 ? (
+            comments.data.comments.map((comment) => (
+              <div>
+                <div key={comment.comment_id} className="individual_comment">
+                  <ol className="comment_author">Author: {comment.author}</ol>
+                  <ol className="comment_body">Comment: {comment.body}</ol>
+                  <ol className="comment_votes">Votes: {comment.votes}</ol>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No comments found</p>
+          )}
         </div>
       )}
     </div>
   );
 };
-
 export default SingleArticle;
