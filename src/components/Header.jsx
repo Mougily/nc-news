@@ -1,8 +1,10 @@
 const Header = () => {
   return (
     <div>
-      <a href="/">home</a>
-      <h1>NEWS</h1>
+      <a className="home_page_link" href="/">
+        home
+      </a>
+      <h1>SOME NEWS</h1>
     </div>
   );
 };

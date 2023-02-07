@@ -65,18 +65,18 @@ const SingleArticle = () => {
   };
 
   return (
-    <div className="single_article">
-      <h2 className="single_article_title">{article.title}</h2>
+    <div className="placeholer">
+      <h2 className="accent_title">{article.title}</h2>
 
       <img
-        className="single_article_img"
+        className="placeholder"
         src={article.article_img_url}
         alt="single_article_image"
       />
-      <p className="author">author: {article.author}</p>
-      <p className="data_published">date published: {article.created_at}</p>
-      <p className="article_body">{article.body}</p>
-      <p className="article_votes">Votes: {article.votes}</p>
+      <p className="caps">written by: {article.author}</p>
+      <p className="sans">date published: {article.created_at}</p>
+      <p className="justify">{article.body}</p>
+      <p className="caps">Votes: {article.votes}</p>
       {err ? <p>{err}</p> : null}
       <button onClick={() => handleIncreaseVotes(article.article_id)}>
         Vote up!
@@ -91,19 +91,19 @@ const SingleArticle = () => {
       </button>
       {showComments && (
         <div className="article_comments_container">
-          <h2>comments</h2>
+          <h2 className="accent">comments</h2>
           {comments.data.comments.length > 0 ? (
             comments.data.comments.map((comment) => (
               <div>
-                <div key={comment.comment_id} className="individual_comment">
-                  <ol className="comment_author">Author: {comment.author}</ol>
-                  <ol className="comment_body">Comment: {comment.body}</ol>
-                  <ol className="comment_votes">Votes: {comment.votes}</ol>
+                <div key={comment.comment_id} className="line-btm">
+                  <ol className="caps">Author: {comment.author}</ol>
+                  <ol className="sans">Comment: {comment.body}</ol>
+                  <ol className="caps">Votes: {comment.votes}</ol>
                 </div>
               </div>
             ))
           ) : (
-            <p>No comments found</p>
+            <p className="accent">No comments found</p>
           )}
         </div>
       )}
