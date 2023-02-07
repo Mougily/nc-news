@@ -18,3 +18,7 @@ export const getArticles = () => {
     return response.data.articles;
   });
 };
+
+export const getArticleCommentsById = (article_id) => {
+  return apiCaller.get(`articles/${article_id}/comments`);
+};
