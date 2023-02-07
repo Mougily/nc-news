@@ -8,7 +8,7 @@ const Articles = () => {
     getArticles().then((articles) => {
       setArticles(articles);
     });
-  }, [articles]);
+  }, []);
 
   return (
     <div>
