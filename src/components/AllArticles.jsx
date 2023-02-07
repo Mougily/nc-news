@@ -1,14 +1,21 @@
 import { getArticles } from "../utils/ApiCalls";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
+
+  let navigate = useNavigate();
+
+  const routeChange = (path) => {
+    navigate(path);
+  };
 
   useEffect(() => {
     getArticles().then((articles) => {
       setArticles(articles);
     });
-  }, [articles]);
+  }, []);
 
   return (
     <div>
@@ -41,6 +48,11 @@ const Articles = () => {
                       <p className="article_date_published">
                         date published: {created_at}
                       </p>
+                      <button
+                        onClick={() => routeChange(`/articles/${article_id}`)}
+                      >
+                        view article
+                      </button>
                     </div>
                   </div>
                 </div>
