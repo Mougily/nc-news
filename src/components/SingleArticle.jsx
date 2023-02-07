@@ -41,6 +41,7 @@ const SingleArticle = () => {
       <p className="author">author: {article.author}</p>
       <p className="data_published">date published: {article.created_at}</p>
       <p className="article_body">{article.body}</p>
+      <p className="article_votes">Votes: {article.votes}</p>
       <button className="comment_button" onClick={commentsHandler}>
         {showComments ? "Hide Comments" : "View Comments"}
       </button>
