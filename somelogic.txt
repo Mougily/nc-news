@@ -132,3 +132,67 @@ some previous styling:
   text-align: center;
 } */
 
+
+CSS for individual comments:
+
+/* .individual_comment {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "author" "body" "votes";
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(222, 57, 21);
+} */
+
+/* .individual_comment {
+  display: grid;
+  width: 400px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "author" "body" "votes";
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(222, 57, 21);
+  margin: 20px;
+} */
+
+
+/* .article_comments_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(165, 160, 159);
+}
+
+.individual_comment {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(222, 57, 21);
+}
+
+.comment_author {
+  font-family: monospace;
+  font-size: 15px;
+  color: rgb(24, 22, 22);
+}
+.comment_body {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+}
+.comment_votes {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+}
+
+.comment_button {
+  font-family: monospace;
+  color: rgb(17, 16, 16);
+  background-color: grey;
+  box-shadow: 0 10px 10px #555;
+  border-radius: 15px;
+} */
