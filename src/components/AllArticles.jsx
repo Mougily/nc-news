@@ -5,18 +5,25 @@ import { useNavigate } from "react-router-dom";
 const Articles = () => {
   const [articles, setArticles] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getArticles().then((articles) => {
+      setArticles(articles);
+      setLoading(false);
+    });
+  }, []);
+
   let navigate = useNavigate();
 
   const routeChange = (path) => {
     navigate(path);
   };
 
-  useEffect(() => {
-    getArticles().then((articles) => {
-      setArticles(articles);
-    });
-  }, []);
-
+  if (loading) {
+    return <h2>Still loading...</h2>;
+  }
   return (
     <div>
       <ul>

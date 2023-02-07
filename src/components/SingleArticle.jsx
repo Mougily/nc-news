@@ -4,16 +4,21 @@ import { useParams } from "react-router-dom";
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
-  console.log(article, "under useState");
+  const [loading, setLoading] = useState(false);
 
   const { article_id } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     getArticleById(article_id).then((article) => {
-      console.log(article, "inside useEffect");
       setArticle(article);
+      setLoading(false);
     });
   }, [article_id]);
+
+  if (loading) {
+    return <h2>Still loading...</h2>;
+  }
   return (
     <div className="single_article">
       <h2 className="single_article_title">{article.title}</h2>
