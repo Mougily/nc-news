@@ -1,6 +1,6 @@
 import { getArticles } from "../utils/ApiCalls";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -14,12 +14,6 @@ const Articles = () => {
       setLoading(false);
     });
   }, []);
-
-  let navigate = useNavigate();
-
-  const routeChange = (path) => {
-    navigate(path);
-  };
 
   if (loading) {
     return <h2>Still loading...</h2>;
@@ -55,11 +49,7 @@ const Articles = () => {
                       <p className="article_date_published">
                         date published: {created_at}
                       </p>
-                      <button
-                        onClick={() => routeChange(`/articles/${article_id}`)}
-                      >
-                        view article
-                      </button>
+                      <Link to={`/articles/${article_id}`}>view article</Link>
                     </div>
                   </div>
                 </div>

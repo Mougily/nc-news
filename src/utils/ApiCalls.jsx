@@ -19,6 +19,12 @@ export const getArticles = () => {
   });
 };
 
+export const getArticleById = (article_id) => {
+  return apiCaller.get(`/articles/${article_id}`).then(({ data }) => {
+    return data.article[0];
+  });
+};
+
 export const getArticleCommentsById = (article_id) => {
   return apiCaller.get(`articles/${article_id}/comments`);
 };
