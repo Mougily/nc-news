@@ -6,7 +6,7 @@ const SingleArticle = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
-
+  const [showComments, setShowComments] = useState(false);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -26,20 +26,9 @@ const SingleArticle = () => {
   }
 
   const commentsHandler = () => {
-    const commentsList = comments.data.comments;
-    return (
-      <p>
-        <h1>hello</h1>
-        {commentsList.map((comment) => {
-          <div>
-            <ol>{comment.author}</ol>
-            <ol>{comment.body}</ol>
-            <ol>{comment.votes}</ol>
-          </div>;
-        })}
-      </p>
-    );
+    setShowComments(!showComments);
   };
+
   return (
     <div className="single_article">
       <h2 className="single_article_title">{article.title}</h2>
@@ -52,8 +41,21 @@ const SingleArticle = () => {
       <p className="author">author: {article.author}</p>
       <p className="data_published">date published: {article.created_at}</p>
       <p className="article_body">{article.body}</p>
-      <button onClick={commentsHandler}>view article comments</button>
-      {comments.length > 0 && commentsHandler()}
+      <button className="comment_button" onClick={commentsHandler}>
+        {showComments ? "Hide Comments" : "View Comments"}
+      </button>
+      {showComments && (
+        <div className="article_comments_container">
+          <h2>comments</h2>
+          {comments.data.comments.map((comment) => (
+            <div key={comment.comment_id} className="individual_comment">
+              <ol className="comment_author">Author: {comment.author}</ol>
+              <ol className="comment_body">Comment: {comment.body}</ol>
+              <ol className="comment_votes">Votes: {comment.votes}</ol>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
