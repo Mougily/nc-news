@@ -24,3 +24,11 @@ export const getArticleById = (article_id) => {
     return data.article[0];
   });
 };
+
+export const voteOnArticle = (article_id) => {
+  return apiCaller
+    .patch(`/articles/${article_id}`, { inc_votes: 1 })
+    .then((response) => {
+      return response.data.article;
+    });
+};

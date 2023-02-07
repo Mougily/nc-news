@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticleById } from "../utils/ApiCalls";
+import { getArticleById, voteOnArticle } from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
 
 const SingleArticle = () => {
@@ -16,6 +16,26 @@ const SingleArticle = () => {
     });
   }, [article_id]);
 
+  // const handleIncreaseVotes = (article_id) => {
+  //   voteOnArticle(article).then(() => {
+  //     setArticle((prevArticles) =>
+  //       prevArticles.map((user) => {
+  //         if (article.article_id === article_id) {
+  //           return { ...article, votes: article.votes + 1 };
+  //         }
+  //         return user;
+  //       })
+  //     );
+  //   });
+  // };
+
+  const handleIncreaseVotes = (article_id) => {
+    console.log(article_id);
+    voteOnArticle(article_id).then((updatedArticle) => {
+      setArticle(updatedArticle);
+    });
+  };
+
   if (loading) {
     return <h2>Still loading...</h2>;
   }
@@ -31,6 +51,10 @@ const SingleArticle = () => {
       <p className="author">author: {article.author}</p>
       <p className="data_published">date published: {article.created_at}</p>
       <p className="article_body">{article.body}</p>
+      <p className="article_votes">Votes: {article.votes}</p>
+      <button onClick={() => handleIncreaseVotes(article.article_id)}>
+        Vote up!
+      </button>
     </div>
   );
 };
