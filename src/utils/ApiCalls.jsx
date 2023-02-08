@@ -29,9 +29,15 @@ export const getArticleCommentsById = (article_id) => {
   return apiCaller.get(`articles/${article_id}/comments`);
 };
 
-export const postComment = (article_id, comment) => {
+export const postComment = (article_id, newComment, userName) => {
+  const article_num = article_id.article_id;
+  const postBody = {
+    username: userName,
+    body: newComment,
+  };
+
   return apiCaller
-    .post(`articles/${article_id}/comments`, comment)
+    .post(`articles/${article_num}/comments`, postBody)
     .then((response) => {
       return response.data.comment;
     });

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticleById, getArticleCommentsById } from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
+import CommentAdder from "./CommentAdder";
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
@@ -21,7 +22,6 @@ const SingleArticle = () => {
       setLoading(false);
     });
   }, [article_id]);
-
   if (loading) {
     return <h2>Still loading...</h2>;
   }
@@ -49,6 +49,10 @@ const SingleArticle = () => {
       {showComments && (
         <div className="article_comments_container">
           <h2>comments</h2>
+          <CommentAdder
+            setComments={setComments}
+            article_id={article.article_id}
+          />
           {comments.data.comments.length > 0 ? (
             comments.data.comments.map((comment) => (
               <div>
@@ -64,19 +68,6 @@ const SingleArticle = () => {
           )}
         </div>
       )}
-      <form>
-        <input
-          type="text"
-          // value={newComment.author}
-          placeholder="Your Name"
-        />
-        <input
-          type="text"
-          // value={newComment.body}
-          placeholder="Your Comment"
-        />
-        <button type="submit">Post Comment</button>
-      </form>
     </div>
   );
 };
