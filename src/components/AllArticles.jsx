@@ -32,28 +32,26 @@ const Articles = () => {
             created_at,
           }) => {
             return (
-              <li key={article_id}>
-                <div className="article_container">
-                  <div className="article">
-                    <div>
-                      <img
-                        className="article_img"
-                        src={article_img_url}
-                        alt={article_id}
-                      ></img>
-                    </div>
-                    <div>
-                      <h2 className="article_title">{title}</h2>
-                      <h3 className="article_author">author: {author}</h3>
-                      <p className="article_topic">topic: {topic}</p>
-                      <p className="article_date_published">
-                        date published: {created_at}
-                      </p>
-                      <Link to={`/articles/${article_id}`}>view article</Link>
-                    </div>
+              <div className="parent_container">
+                <div className="parent_container">
+                  <div>
+                    <img
+                      className="placeholder"
+                      src={article_img_url}
+                      alt={article_id}
+                    ></img>
+                  </div>
+                  <div>
+                    <h2 className="caps">{title}</h2>
+                    <h3 className="caps">author: {author}</h3>
+                    <p className="sans">topic: {topic}</p>
+                    <p className="sans">date published: {created_at}</p>
+                    <Link className="caps" to={`/articles/${article_id}`}>
+                      view article
+                    </Link>
                   </div>
                 </div>
-              </li>
+              </div>
             );
           }
         )}
