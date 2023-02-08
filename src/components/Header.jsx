@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div>
-      <a className="home_page_link" href="/">
+      <a className="caps" href="/">
         home
       </a>
       <h1>SOME NEWS</h1>
