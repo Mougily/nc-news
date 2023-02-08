@@ -14,6 +14,8 @@ const SingleArticle = () => {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
+  const [votedUp, setUpVoted] = useState(false);
+  const [votedDown, setDownVoted] = useState(false);
   const [err, setErr] = useState(null);
 
   const { article_id } = useParams();
@@ -39,8 +41,11 @@ const SingleArticle = () => {
       return article;
     });
     voteUpOnArticle(article_id).catch((err) => {
-      setErr("Something went wrong, please try again.");
+      if (err) {
+        setErr("Something went wrong, please try again.");
+      }
     });
+    setUpVoted(true);
   };
 
   const handleDecreaseVotes = (article_id) => {
@@ -52,8 +57,11 @@ const SingleArticle = () => {
       return article;
     });
     voteDownOnArticle(article_id).catch((err) => {
-      setErr("Something went wrong, please try again.");
+      if (err) {
+        setErr("Something went wrong, please try again.");
+      }
     });
+    setDownVoted(true);
   };
 
   if (loading) {
@@ -78,11 +86,19 @@ const SingleArticle = () => {
       <p className="justify">{article.body}</p>
       <p className="caps">Votes: {article.votes}</p>
       {err ? <p>{err}</p> : null}
-      <button onClick={() => handleIncreaseVotes(article.article_id)}>
+      <button
+        onClick={() => handleIncreaseVotes(article.article_id)}
+        disabled={votedUp}
+      >
         Vote up!
       </button>
+
       {err ? <p>{err}</p> : null}
-      <button onClick={() => handleDecreaseVotes(article.article_id)}>
+
+      <button
+        onClick={() => handleDecreaseVotes(article.article_id)}
+        disabled={votedDown}
+      >
         Vote down!
       </button>
 
