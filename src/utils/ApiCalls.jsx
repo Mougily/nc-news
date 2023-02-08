@@ -42,18 +42,19 @@ export const voteDownOnArticle = (article_id) => {
 };
 
 export const getArticleCommentsById = (article_id) => {
-  return apiCaller.get(`articles/${article_id}/comments`);
+  return apiCaller.get(`articles/${article_id}/comments`).then((response) => {
+    return response.data.comments;
+  });
 };
 
-export const postComment = (article_id, newComment, userName) => {
-  const article_num = article_id.article_id;
+export const postComment = (article_id, newComment) => {
   const postBody = {
-    username: userName,
+    username: "tickle122",
     body: newComment,
   };
 
   return apiCaller
-    .post(`articles/${article_num}/comments`, postBody)
+    .post(`articles/${article_id}/comments`, postBody)
     .then((response) => {
       return response.data.comment;
     });

@@ -111,8 +111,8 @@ const SingleArticle = () => {
             setComments={setComments}
             article_id={article.article_id}
           />
-          {comments.data.comments.length > 0 ? (
-            comments.data.comments.map((comment) => (
+          {comments.length > 0 ? (
+            comments.map((comment) => (
               <div>
                 <div key={comment.comment_id} className="line-btm">
                   <ol className="caps">Author: {comment.author}</ol>
