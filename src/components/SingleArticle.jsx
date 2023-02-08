@@ -64,6 +64,19 @@ const SingleArticle = () => {
           )}
         </div>
       )}
+      <form>
+        <input
+          type="text"
+          // value={newComment.author}
+          placeholder="Your Name"
+        />
+        <input
+          type="text"
+          // value={newComment.body}
+          placeholder="Your Comment"
+        />
+        <button type="submit">Post Comment</button>
+      </form>
     </div>
   );
 };
