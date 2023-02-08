@@ -38,6 +38,10 @@ li {
   grid-gap: 1em 3em;
 }
 
+.comment_msg {
+  margin-left: 20px;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+}
 /* TYPE */
 .sans {
   font-family: "Work Sans", Helvetica, Arial, sans-serif;
@@ -114,6 +118,17 @@ li {
   text-align: center;
   min-height: 300px;
   object-fit: contain;
+}
+
+textarea {
+  border: 1px solid var(--coral);
+  padding: 10px;
+  display: flex;
+  text-align: center;
+
+  object-fit: contain;
+  width: 217px;
+  height: 56px;
 }
 
 .article_container {
