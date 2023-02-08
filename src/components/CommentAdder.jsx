@@ -7,16 +7,15 @@ const CommentAdder = ({ article_id, setComments }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newComment.length > 0) {
-      postComment(article_id, newComment).then((commentFromApi) => {
-        setComments((currComments) => {
-          setMessage("comment posted!");
-          return [commentFromApi, ...currComments];
-        });
-      });
-    } else {
-      setMessage("cannot post blank comment");
+    if (!newComment.length) {
+      return setMessage("cannot post blank comment");
     }
+    setMessage("comment posted!");
+    postComment(article_id, newComment).then((commentFromApi) =>
+      setComments((currComments) => {
+        return [commentFromApi, ...currComments];
+      })
+    );
   };
 
   return (
