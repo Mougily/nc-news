@@ -93,8 +93,6 @@ const SingleArticle = () => {
         Vote up!
       </button>
 
-      {err ? <p>{err}</p> : null}
-
       <button
         onClick={() => handleDecreaseVotes(article.article_id)}
         disabled={votedDown}
