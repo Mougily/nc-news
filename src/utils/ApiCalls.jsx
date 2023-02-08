@@ -28,3 +28,11 @@ export const getArticleById = (article_id) => {
 export const getArticleCommentsById = (article_id) => {
   return apiCaller.get(`articles/${article_id}/comments`);
 };
+
+export const postComment = (article_id, comment) => {
+  return apiCaller
+    .post(`articles/${article_id}/comments`, comment)
+    .then((response) => {
+      return response.data.comment;
+    });
+};
