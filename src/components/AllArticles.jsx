@@ -8,6 +8,7 @@ const Articles = () => {
   const [loading, setLoading] = useState(false);
   const [topic, setTopic] = useState(null);
   const [sortby, setSortby] = useState("created_at");
+  const [message, setMessage] = useState("date published");
 
   useEffect(() => {
     setLoading(true);
@@ -17,20 +18,35 @@ const Articles = () => {
     });
   }, [topic, sortby]);
 
+  useEffect(() => {
+    switch (sortby) {
+      case "author":
+        setMessage("author");
+        break;
+      case "created_at":
+        setMessage("date published");
+        break;
+      case "votes":
+        setMessage("most popular");
+        break;
+      default:
+        break;
+    }
+  }, [sortby]);
+
   const handleTopicChange = (selectedTopic) => {
+    console.log(selectedTopic);
     setTopic(selectedTopic);
   };
-
   if (loading) {
     return <h3 className="loading_topics">loading topics...</h3>;
   }
   return (
     <div>
-      <ViewTopics
-        onTopicChange={handleTopicChange}
-        sortby={sortby}
-        setSortby={setSortby}
-      />
+      <ViewTopics onTopicChange={handleTopicChange} />
+      <p className="sort_by_msg">
+        {topic} articles sorted by {message} in ascending order
+      </p>
       <section className="filter_buttons">
         <p className="sans">filter by:</p>
         <button onClick={() => setSortby("author")}>author</button>

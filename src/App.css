@@ -94,6 +94,16 @@ li {
   font-size: 20px;
   margin-left: 40px;
 }
+
+.sort_by_msg {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 40px;
+  border-bottom: 1px solid var(--coral);
+  width: 60%;
+  padding: 10px 0;
+}
 /*LINES*/
 
 .line-btm {
