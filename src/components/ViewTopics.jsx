@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const ViewTopics = ({ onTopicChange }) => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let navigate = useNavigate();
 
