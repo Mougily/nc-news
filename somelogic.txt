@@ -413,3 +413,30 @@ button {
     grid-template-rows: auto auto auto;
   }
 }
+
+
+/* GRID */
+
+.span-all {
+  grid-column: span 12;
+}
+
+.span-third {
+  grid-column: span 4;
+}
+
+.span-fourth {
+  grid-column: span 3;
+}
+
+.span-half {
+  grid-column: span 6;
+}
+
+.span-twothirds {
+  grid-column: span 8;
+}
+
+.span-threefourths {
+  grid-column: span 9;
+}

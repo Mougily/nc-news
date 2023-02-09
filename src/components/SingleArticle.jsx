@@ -8,6 +8,7 @@ import {
 } from "../utils/ApiCalls";
 
 import { useParams } from "react-router-dom";
+import CommentAdder from "./CommentAdder";
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
@@ -106,8 +107,12 @@ const SingleArticle = () => {
       {showComments && (
         <div className="article_comments_container">
           <h2 className="accent">comments</h2>
-          {comments.data.comments.length > 0 ? (
-            comments.data.comments.map((comment) => (
+          <CommentAdder
+            setComments={setComments}
+            article_id={article.article_id}
+          />
+          {comments.length > 0 ? (
+            comments.map((comment) => (
               <div>
                 <div key={comment.comment_id} className="line-btm">
                   <ol className="caps">Author: {comment.author}</ol>
