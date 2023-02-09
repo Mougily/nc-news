@@ -1,22 +1,3 @@
-// import "./App.css";
-// import Header from "./components/Header";
-// import { Routes, Route } from "react-router-dom";
-// import Articles from "./components/AllArticles";
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <Header />
-//       <Routes>
-//         <Route path="/" element={<Articles />} />
-//         <Route path="/articles" element={<Articles />} />
-//       </Routes>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import "./App.css";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
@@ -31,6 +12,7 @@ function App() {
         <Route path="/" element={<Articles />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
+        <Route path="/articles/topic/:topic" element={<Articles />} />
       </Routes>
     </div>
   );
