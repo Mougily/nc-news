@@ -125,7 +125,6 @@ textarea {
   padding: 10px;
   display: flex;
   text-align: center;
-
   object-fit: contain;
   width: 217px;
   height: 56px;
@@ -133,32 +132,6 @@ textarea {
 
 .article_container {
   margin-left: 50px;
-}
-
-/* GRID */
-
-.span-all {
-  grid-column: span 12;
-}
-
-.span-third {
-  grid-column: span 4;
-}
-
-.span-fourth {
-  grid-column: span 3;
-}
-
-.span-half {
-  grid-column: span 6;
-}
-
-.span-twothirds {
-  grid-column: span 8;
-}
-
-.span-threefourths {
-  grid-column: span 9;
 }
 
 /* Buttons */
@@ -195,6 +168,7 @@ button {
 button:hover {
   letter-spacing: 6px;
 }
+
 /* Responsive */
 
 @media screen and (max-width: 600px) {
