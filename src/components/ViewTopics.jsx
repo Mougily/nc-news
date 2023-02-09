@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../utils/ApiCalls";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const ViewTopics = ({ onTopicChange }) => {
+const ViewTopics = ({ onTopicChange, setLoading, loading }) => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
 

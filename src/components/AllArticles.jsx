@@ -25,7 +25,11 @@ const Articles = () => {
   }
   return (
     <div>
-      <ViewTopics onTopicChange={handleTopicChange} />
+      <ViewTopics
+        onTopicChange={handleTopicChange}
+        setLoading={setLoading}
+        loading={loading}
+      />
       <ul>
         {" "}
         {articles.map(

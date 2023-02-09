@@ -14,11 +14,12 @@ export const getTopics = () => {
 
 export const getArticles = (topic) => {
   let endpoint = "/articles";
+  let params = {};
 
   if (topic) {
-    endpoint += `?topic=${topic}`;
+    params.topic = topic;
   }
-  return apiCaller.get(endpoint).then((response) => {
+  return apiCaller.get(endpoint, { params }).then((response) => {
     return response.data.articles;
   });
 };
