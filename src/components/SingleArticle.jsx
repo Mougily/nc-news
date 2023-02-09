@@ -5,6 +5,7 @@ import {
   getArticleCommentsById,
   voteUpOnArticle,
   voteDownOnArticle,
+  deleteComment,
 } from "../utils/ApiCalls";
 
 import { useParams } from "react-router-dom";
@@ -18,6 +19,8 @@ const SingleArticle = () => {
   const [votedUp, setUpVoted] = useState(false);
   const [votedDown, setDownVoted] = useState(false);
   const [err, setErr] = useState(null);
+  const [message, setMessage] = useState("");
+  const [deletedCommentId, setDeletedCommentId] = useState(null);
 
   const { article_id } = useParams();
 
@@ -73,6 +76,17 @@ const SingleArticle = () => {
     setShowComments(!showComments);
   };
 
+  const deleteHandler = (comment_id) => {
+    deleteComment(comment_id).then(() => {
+      setMessage("comment deleted");
+      setComments(
+        comments.filter((comment) => comment.comment_id !== comment_id)
+      );
+      window.alert("The comment has been deleted");
+      setDeletedCommentId(comment_id);
+    });
+  };
+
   return (
     <div className="placeholer">
       <h2 className="accent_title">{article.title}</h2>
@@ -111,6 +125,7 @@ const SingleArticle = () => {
             setComments={setComments}
             article_id={article.article_id}
           />
+
           {comments.length > 0 ? (
             comments.map((comment) => (
               <div>
@@ -119,6 +134,10 @@ const SingleArticle = () => {
                   <ol className="sans">Comment: {comment.body}</ol>
                   <ol className="caps">Votes: {comment.votes}</ol>
                 </div>
+                <button onClick={() => deleteHandler(comment.comment_id)}>
+                  delete comment
+                </button>
+                {deletedCommentId === comment.comment_id && <p>{message}</p>}
               </div>
             ))
           ) : (

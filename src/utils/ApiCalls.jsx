@@ -64,3 +64,9 @@ export const postComment = (article_id, newComment) => {
       return response.data.comment;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return apiCaller.delete(`/comments/${comment_id}`).then((response) => {
+    return response.data.comment;
+  });
+};
