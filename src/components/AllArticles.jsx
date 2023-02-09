@@ -7,29 +7,36 @@ const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [topic, setTopic] = useState(null);
+  const [sortby, setSortby] = useState("created_at");
 
   useEffect(() => {
     setLoading(true);
-    getArticles(topic).then((articles) => {
+    getArticles(topic, sortby).then((articles) => {
       setArticles(articles);
       setLoading(false);
     });
-  }, [topic]);
+  }, [topic, sortby]);
 
   const handleTopicChange = (selectedTopic) => {
     setTopic(selectedTopic);
   };
 
   if (loading) {
-    return <h3 className="caps">loading topics...</h3>;
+    return <h3 className="loading_topics">loading topics...</h3>;
   }
   return (
     <div>
       <ViewTopics
         onTopicChange={handleTopicChange}
-        setLoading={setLoading}
-        loading={loading}
+        sortby={sortby}
+        setSortby={setSortby}
       />
+      <section className="filter_buttons">
+        <p className="sans">filter by:</p>
+        <button onClick={() => setSortby("author")}>author</button>
+        <button onClick={() => setSortby("created_at")}>date published</button>
+        <button onClick={() => setSortby("votes")}>most popular</button>
+      </section>
       <ul>
         {" "}
         {articles.map(

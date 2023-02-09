@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../utils/ApiCalls";
-
 import { useNavigate } from "react-router-dom";
 
 const ViewTopics = ({ onTopicChange }) => {
@@ -18,12 +17,13 @@ const ViewTopics = ({ onTopicChange }) => {
     setLoading(true);
     getTopics().then((topics) => {
       setTopics(topics);
+
       setLoading(false);
     });
   }, []);
 
   if (loading) {
-    return <h3 className="caps">loading topics...</h3>;
+    return <h3 className="loading_topics">loading topics...</h3>;
   }
 
   const handleChange = (event) => {

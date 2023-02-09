@@ -414,3 +414,12 @@ button {
   }
 }
 
+toggle button for asc / desc order:
+
+<button onClick={toggleOrder}>order ascending / descending </button>
+
+ const toggleOrder = () => {
+    setOrderby(orderby === "ASC" ? "DESC" : "ASC");
+  };
+
+  const [orderby, setOrderby] = useState("ASC");

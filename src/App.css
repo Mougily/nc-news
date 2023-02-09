@@ -87,6 +87,13 @@ li {
 .fine-print {
   font-size: 8px;
 }
+
+.loading_topics {
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  margin-left: 40px;
+}
 /*LINES*/
 
 .line-btm {
@@ -134,6 +141,10 @@ textarea {
   margin-left: 50px;
 }
 
+.filter_buttons {
+  margin-left: 40px;
+}
+
 /* Buttons */
 button {
   position: relative;
@@ -163,6 +174,8 @@ button {
   transition: all 0.3s ease;
   --line_color: #555555;
   --back_color: #ffecf6;
+  margin-left: 40px;
+  margin-top: 40px;
 }
 
 button:hover {

@@ -12,13 +12,18 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (topic) => {
+export const getArticles = (topic, sortby) => {
   let endpoint = "/articles";
-  let params = {};
+  let params = { order: "ASC" };
 
   if (topic) {
     params.topic = topic;
   }
+
+  if (sortby) {
+    params.sort_by = sortby;
+  }
+
   return apiCaller.get(endpoint, { params }).then((response) => {
     return response.data.articles;
   });
