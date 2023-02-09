@@ -21,7 +21,7 @@ const Articles = () => {
   };
 
   if (loading) {
-    return <h2>Still loading...</h2>;
+    return <h3 className="caps">loading topics...</h3>;
   }
   return (
     <div>

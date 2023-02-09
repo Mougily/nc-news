@@ -3,9 +3,10 @@ import { getTopics } from "../utils/ApiCalls";
 
 import { useNavigate } from "react-router-dom";
 
-const ViewTopics = ({ onTopicChange, setLoading, loading }) => {
+const ViewTopics = ({ onTopicChange }) => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
 
@@ -14,10 +15,16 @@ const ViewTopics = ({ onTopicChange, setLoading, loading }) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     getTopics().then((topics) => {
       setTopics(topics);
+      setLoading(false);
     });
   }, []);
+
+  if (loading) {
+    return <h3 className="caps">loading topics...</h3>;
+  }
 
   const handleChange = (event) => {
     const topic = event.target.value;
