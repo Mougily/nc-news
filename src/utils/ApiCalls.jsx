@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiCaller = axios.create({
-  baseURL: "https://news-app-mg2a.onrender.com/api/",
+  baseURL: "https://news-app-mg2a.onrender.com/api",
 });
 
 export const getTopics = () => {
@@ -12,9 +12,14 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = () => {
-  return apiCaller.get("/articles").then((response) => {
-    console.log(response.data.articles);
+export const getArticles = (topic) => {
+  let endpoint = "/articles";
+  let params = {};
+
+  if (topic) {
+    params.topic = topic;
+  }
+  return apiCaller.get(endpoint, { params }).then((response) => {
     return response.data.articles;
   });
 };

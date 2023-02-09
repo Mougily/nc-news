@@ -1,25 +1,35 @@
 import { getArticles } from "../utils/ApiCalls";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ViewTopics from "./ViewTopics";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-
   const [loading, setLoading] = useState(false);
+  const [topic, setTopic] = useState(null);
 
   useEffect(() => {
     setLoading(true);
-    getArticles().then((articles) => {
+    getArticles(topic).then((articles) => {
       setArticles(articles);
       setLoading(false);
     });
-  }, []);
+  }, [topic]);
+
+  const handleTopicChange = (selectedTopic) => {
+    setTopic(selectedTopic);
+  };
 
   if (loading) {
-    return <h2>Still loading...</h2>;
+    return <h3 className="caps">loading topics...</h3>;
   }
   return (
     <div>
+      <ViewTopics
+        onTopicChange={handleTopicChange}
+        setLoading={setLoading}
+        loading={loading}
+      />
       <ul>
         {" "}
         {articles.map(

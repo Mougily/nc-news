@@ -125,7 +125,6 @@ textarea {
   padding: 10px;
   display: flex;
   text-align: center;
-
   object-fit: contain;
   width: 217px;
   height: 56px;
@@ -137,6 +136,21 @@ textarea {
 
 /* Buttons */
 button {
+  position: relative;
+  z-index: 0;
+  width: 240px;
+  height: 56px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--line_color);
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  --line_color: #555555;
+  --back_color: #ffecf6;
+}
+
+.topics_dropdown {
   position: relative;
   z-index: 0;
   width: 240px;
