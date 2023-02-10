@@ -103,7 +103,10 @@ const Articles = () => {
                     <h3 className="caps">author: {author}</h3>
                     <p className="sans">topic: {topic}</p>
                     <p className="sans">date published: {created_at}</p>
-                    <Link className="caps" to={`/articles/${article_id}`}>
+                    <Link
+                      className="home_page_link"
+                      to={`/articles/${article_id}`}
+                    >
                       view article
                     </Link>
                   </div>
