@@ -17,6 +17,7 @@ const CommentAdder = ({ article_id, setComments }) => {
       .then((commentFromApi) => {
         setIsLoading(false);
         setComments((currComments) => {
+          setMessage("");
           setNewComment("");
           return [commentFromApi, ...currComments];
         });

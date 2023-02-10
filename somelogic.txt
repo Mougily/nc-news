@@ -414,3 +414,12 @@ button {
   }
 }
 
+
+// delete comments:
+
+{comment.comment_id && comment.author ? <p>{message}</p> : <p></p>}
+
+
+  const [message, setMessage] = useState("");
+
+
