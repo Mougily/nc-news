@@ -1,4 +1,4 @@
-import { getArticleCommentsById, postComment } from "../utils/ApiCalls";
+import { getArticleCommentsById } from "../utils/ApiCalls";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

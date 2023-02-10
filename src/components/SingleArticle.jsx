@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-
-import {
-  getArticleById,
-  getArticleCommentsById,
-  voteUpOnArticle,
-  voteDownOnArticle,
-} from "../utils/ApiCalls";
-
+import { getArticleById, getArticleCommentsById } from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder";
+
 import ErrorPage from "./ErrorPage";
+
+import Votes from "./Votes";
+
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
-  const [votedUp, setUpVoted] = useState(false);
-  const [votedDown, setDownVoted] = useState(false);
+
   const [err, setErr] = useState(null);
   const [error, setError] = useState(null);
+
+
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
 
   const { article_id } = useParams();
 
@@ -39,41 +39,10 @@ const SingleArticle = () => {
       });
   }, [article_id]);
 
+
   if (error) {
     return <ErrorPage message={error} />;
   }
-
-  const handleIncreaseVotes = (article_id) => {
-    setArticle(() => {
-      if (article.article_id === article_id) {
-        return { ...article, votes: article.votes + 1 };
-      }
-      setErr(null);
-      return article;
-    });
-    voteUpOnArticle(article_id).catch((err) => {
-      if (err) {
-        setErr("Something went wrong, please try again.");
-      }
-    });
-    setUpVoted(true);
-  };
-
-  const handleDecreaseVotes = (article_id) => {
-    setArticle(() => {
-      if (article.article_id === article_id) {
-        return { ...article, votes: article.votes - 1 };
-      }
-      setErr(null);
-      return article;
-    });
-    voteDownOnArticle(article_id).catch((err) => {
-      if (err) {
-        setErr("Something went wrong, please try again.");
-      }
-    });
-    setDownVoted(true);
-  };
 
   if (loading) {
     return <h2>Still loading...</h2>;
@@ -82,6 +51,30 @@ const SingleArticle = () => {
   const commentsHandler = () => {
     setShowComments(!showComments);
   };
+
+  const deleteHandler = (comment_id, author) => {
+    const user = "tickle122";
+    if (author !== user) {
+    } else {
+      setComments(
+        comments.filter((comment) => comment.comment_id !== comment_id)
+      );
+      setDeleteLoading(true);
+      deleteComment(comment_id)
+        .then(() => {
+          setDeleteLoading(false);
+        })
+        .catch((error) => {
+          if (error) {
+            window.alert("cannot delete, try again later");
+          }
+        });
+    }
+  };
+
+  if (deleteLoading) {
+    return <p>deleting comment...</p>;
+  }
 
   return (
     <div className="placeholer">
@@ -96,20 +89,11 @@ const SingleArticle = () => {
       <p className="sans">date published: {article.created_at}</p>
       <p className="justify">{article.body}</p>
       <p className="caps">Votes: {article.votes}</p>
-      {err ? <p>{err}</p> : null}
-      <button
-        onClick={() => handleIncreaseVotes(article.article_id)}
-        disabled={votedUp}
-      >
-        Vote up!
-      </button>
-
-      <button
-        onClick={() => handleDecreaseVotes(article.article_id)}
-        disabled={votedDown}
-      >
-        Vote down!
-      </button>
+      <Votes
+        article_id={article.article_id}
+        article={article}
+        setArticle={setArticle}
+      />
 
       <button className="comment_button" onClick={commentsHandler}>
         {showComments ? "Hide Comments" : "View Comments"}
@@ -121,6 +105,7 @@ const SingleArticle = () => {
             setComments={setComments}
             article_id={article.article_id}
           />
+
           {comments.length > 0 ? (
             comments.map((comment) => (
               <div>
@@ -129,6 +114,16 @@ const SingleArticle = () => {
                   <ol className="sans">Comment: {comment.body}</ol>
                   <ol className="caps">Votes: {comment.votes}</ol>
                 </div>
+                {comment.author === "tickle122" ? (
+                  <button
+                    className="delete_comment_btn"
+                    onClick={() =>
+                      deleteHandler(comment.comment_id, comment.author)
+                    }
+                  >
+                    delete comment
+                  </button>
+                ) : null}
               </div>
             ))
           ) : (

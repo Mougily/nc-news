@@ -414,3 +414,22 @@ button {
   }
 }
 
+// delete comments:
+
+{comment.comment_id && comment.author ? <p>{message}</p> : <p></p>}
+
+
+  const [message, setMessage] = useState("");
+
+
+
+toggle button for asc / desc order:
+
+<button onClick={toggleOrder}>order ascending / descending </button>
+
+ const toggleOrder = () => {
+    setOrderby(orderby === "ASC" ? "DESC" : "ASC");
+  };
+
+  const [orderby, setOrderby] = useState("ASC");
+
