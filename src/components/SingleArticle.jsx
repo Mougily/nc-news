@@ -19,6 +19,7 @@ const SingleArticle = () => {
   const [votedUp, setUpVoted] = useState(false);
   const [votedDown, setDownVoted] = useState(false);
   const [err, setErr] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const { article_id } = useParams();
 
@@ -77,14 +78,14 @@ const SingleArticle = () => {
   const deleteHandler = (comment_id, author) => {
     const user = "tickle122";
     if (author !== user) {
-      window.alert("cannot delete another users comment!");
     } else {
       setComments(
         comments.filter((comment) => comment.comment_id !== comment_id)
       );
+      setDeleteLoading(true);
       deleteComment(comment_id)
         .then(() => {
-          window.alert("The comment has been deleted");
+          setDeleteLoading(false);
         })
         .catch((error) => {
           if (error) {
@@ -93,6 +94,10 @@ const SingleArticle = () => {
         });
     }
   };
+
+  if (deleteLoading) {
+    return <p>deleting comment...</p>;
+  }
 
   return (
     <div className="placeholer">
@@ -141,14 +146,16 @@ const SingleArticle = () => {
                   <ol className="sans">Comment: {comment.body}</ol>
                   <ol className="caps">Votes: {comment.votes}</ol>
                 </div>
-                <button
-                  className="delete_comment_btn"
-                  onClick={() =>
-                    deleteHandler(comment.comment_id, comment.author)
-                  }
-                >
-                  delete comment
-                </button>
+                {comment.author === "tickle122" ? (
+                  <button
+                    className="delete_comment_btn"
+                    onClick={() =>
+                      deleteHandler(comment.comment_id, comment.author)
+                    }
+                  >
+                    delete comment
+                  </button>
+                ) : null}
               </div>
             ))
           ) : (
