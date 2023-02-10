@@ -82,9 +82,15 @@ const SingleArticle = () => {
       setComments(
         comments.filter((comment) => comment.comment_id !== comment_id)
       );
-      deleteComment(comment_id).then(() => {
-        window.alert("The comment has been deleted");
-      });
+      deleteComment(comment_id)
+        .then(() => {
+          window.alert("The comment has been deleted");
+        })
+        .catch((error) => {
+          if (error) {
+            window.alert("cannot delete, try again later");
+          }
+        });
     }
   };
 

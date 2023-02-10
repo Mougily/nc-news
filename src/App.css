@@ -23,7 +23,11 @@ h1 {
 }
 
 .home_page_link {
-  font-family: monospace;
+  color: #da4524;
+  font-size: 1.5em;
+  line-height: 120%;
+  margin: 50px 0;
+  font-family: "Courier New", Courier, monospace;
 }
 
 /* Main articles page */
@@ -87,6 +91,7 @@ li {
 .fine-print {
   font-size: 8px;
 }
+
 /*LINES*/
 
 .line-btm {
@@ -101,6 +106,24 @@ li {
 }
 
 /* IMAGES */
+
+.user_img {
+  margin-top: 0px;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.user_info {
+  text-align: right;
+  padding: 0;
+}
+
+.user_logged {
+  font-size: 1em;
+  margin-bottom: 5px;
+  font-family: "Courier New", Courier, monospace;
+}
 
 .parent_container {
   display: grid;
