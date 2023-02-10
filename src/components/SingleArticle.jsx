@@ -1,23 +1,14 @@
 import { useEffect, useState } from "react";
-
-import {
-  getArticleById,
-  getArticleCommentsById,
-  voteUpOnArticle,
-  voteDownOnArticle,
-} from "../utils/ApiCalls";
-
+import { getArticleById, getArticleCommentsById } from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder";
+import Votes from "./Votes";
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
-  const [votedUp, setUpVoted] = useState(false);
-  const [votedDown, setDownVoted] = useState(false);
-  const [err, setErr] = useState(null);
 
   const { article_id } = useParams();
 
@@ -32,38 +23,6 @@ const SingleArticle = () => {
       setLoading(false);
     });
   }, [article_id]);
-
-  const handleIncreaseVotes = (article_id) => {
-    setArticle(() => {
-      if (article.article_id === article_id) {
-        return { ...article, votes: article.votes + 1 };
-      }
-      setErr(null);
-      return article;
-    });
-    voteUpOnArticle(article_id).catch((err) => {
-      if (err) {
-        setErr("Something went wrong, please try again.");
-      }
-    });
-    setUpVoted(true);
-  };
-
-  const handleDecreaseVotes = (article_id) => {
-    setArticle(() => {
-      if (article.article_id === article_id) {
-        return { ...article, votes: article.votes - 1 };
-      }
-      setErr(null);
-      return article;
-    });
-    voteDownOnArticle(article_id).catch((err) => {
-      if (err) {
-        setErr("Something went wrong, please try again.");
-      }
-    });
-    setDownVoted(true);
-  };
 
   if (loading) {
     return <h2>Still loading...</h2>;
@@ -86,20 +45,11 @@ const SingleArticle = () => {
       <p className="sans">date published: {article.created_at}</p>
       <p className="justify">{article.body}</p>
       <p className="caps">Votes: {article.votes}</p>
-      {err ? <p>{err}</p> : null}
-      <button
-        onClick={() => handleIncreaseVotes(article.article_id)}
-        disabled={votedUp}
-      >
-        Vote up!
-      </button>
-
-      <button
-        onClick={() => handleDecreaseVotes(article.article_id)}
-        disabled={votedDown}
-      >
-        Vote down!
-      </button>
+      <Votes
+        article_id={article.article_id}
+        article={article}
+        setArticle={setArticle}
+      />
 
       <button className="comment_button" onClick={commentsHandler}>
         {showComments ? "Hide Comments" : "View Comments"}

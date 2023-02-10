@@ -35,7 +35,6 @@ const Articles = () => {
   }, [sortby]);
 
   const handleTopicChange = (selectedTopic) => {
-    console.log(selectedTopic);
     setTopic(selectedTopic);
   };
   if (loading) {
@@ -45,7 +44,8 @@ const Articles = () => {
     <div>
       <ViewTopics onTopicChange={handleTopicChange} />
       <p className="sort_by_msg">
-        {topic} articles sorted by {message} in ascending order
+        <div className="topic_msg">{topic}</div> articles sorted by{" "}
+        <div className="order_msg">{message}</div> in ascending order
       </p>
       <section className="filter_buttons">
         <p className="sans">filter by:</p>

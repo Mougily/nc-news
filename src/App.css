@@ -96,6 +96,7 @@ li {
 }
 
 .sort_by_msg {
+  display: flex;
   font-family: monospace;
   font-size: 20px;
   font-weight: 500;
@@ -103,6 +104,20 @@ li {
   border-bottom: 1px solid var(--coral);
   width: 60%;
   padding: 10px 0;
+}
+
+.topic_msg {
+  font-weight: 800;
+  white-space: 10px;
+  color: whitesmoke;
+  margin-right: 10px;
+}
+
+.order_msg {
+  font-weight: 800;
+  color: whitesmoke;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 /*LINES*/
 
