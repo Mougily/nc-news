@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getArticleById, getArticleCommentsById } from "../utils/ApiCalls";
+import {
+  getArticleById,
+  getArticleCommentsById,
+  deleteComment,
+} from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder";
 import Votes from "./Votes";
@@ -11,7 +15,6 @@ const SingleArticle = () => {
   const [showComments, setShowComments] = useState(false);
 
   const [deleteLoading, setDeleteLoading] = useState(false);
-
 
   const { article_id } = useParams();
 
