@@ -9,6 +9,7 @@ import {
 
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder";
+import ErrorPage from "./ErrorPage";
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
@@ -18,6 +19,7 @@ const SingleArticle = () => {
   const [votedUp, setUpVoted] = useState(false);
   const [votedDown, setDownVoted] = useState(false);
   const [err, setErr] = useState(null);
+  const [error, setError] = useState(null);
 
   const { article_id } = useParams();
 
@@ -26,12 +28,20 @@ const SingleArticle = () => {
     Promise.all([
       getArticleById(article_id),
       getArticleCommentsById(article_id),
-    ]).then(([article, comments]) => {
-      setArticle(article);
-      setComments(comments);
-      setLoading(false);
-    });
+    ])
+      .then(([article, comments]) => {
+        setArticle(article);
+        setComments(comments);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError({ err });
+      });
   }, [article_id]);
+
+  if (error) {
+    return <ErrorPage message={error} />;
+  }
 
   const handleIncreaseVotes = (article_id) => {
     setArticle(() => {
