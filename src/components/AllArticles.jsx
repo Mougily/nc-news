@@ -13,6 +13,7 @@ const Articles = () => {
   const [orderMsg, setOrderMsg] = useState("ascending");
 
   useEffect(() => {
+    console.log(topic);
     setLoading(true);
     getArticles(topic, sortby, order).then((articles) => {
       setArticles(articles);
@@ -57,7 +58,7 @@ const Articles = () => {
   }
   return (
     <div>
-      <ViewTopics onTopicChange={handleTopicChange} />
+      <ViewTopics onTopicChange={handleTopicChange} topic={topic} />
       <p className="sort_by_msg">
         <div className="topic_msg">{topic}</div> articles sorted by{" "}
         <div className="order_msg">{message}</div> in{" "}
