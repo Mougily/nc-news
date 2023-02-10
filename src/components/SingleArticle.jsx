@@ -11,16 +11,12 @@ import ErrorPage from "./ErrorPage";
 
 import Votes from "./Votes";
 
-
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
-
-  const [err, setErr] = useState(null);
   const [error, setError] = useState(null);
-
 
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -41,7 +37,6 @@ const SingleArticle = () => {
         setError({ err });
       });
   }, [article_id]);
-
 
   if (error) {
     return <ErrorPage message={error} />;
