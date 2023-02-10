@@ -43,7 +43,9 @@ const CommentAdder = ({ article_id, setComments }) => {
           onChange={(e) => setNewComment(e.target.value)}
         ></textarea>
 
-        <button disabled={isLoading}>add comment</button>
+        <button className="add_comment_btn" disabled={isLoading}>
+          add comment
+        </button>
       </form>
       <p className="comment_msg">{message}</p>
     </div>

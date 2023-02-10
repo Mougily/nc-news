@@ -9,14 +9,16 @@ const Articles = () => {
   const [topic, setTopic] = useState(null);
   const [sortby, setSortby] = useState("created_at");
   const [message, setMessage] = useState("date published");
+  const [order, setOrder] = useState("ASC");
+  const [orderMsg, setOrderMsg] = useState("ascending");
 
   useEffect(() => {
     setLoading(true);
-    getArticles(topic, sortby).then((articles) => {
+    getArticles(topic, sortby, order).then((articles) => {
       setArticles(articles);
       setLoading(false);
     });
-  }, [topic, sortby]);
+  }, [topic, sortby, order]);
 
   useEffect(() => {
     switch (sortby) {
@@ -34,6 +36,19 @@ const Articles = () => {
     }
   }, [sortby]);
 
+  useEffect(() => {
+    switch (order) {
+      case "DESC":
+        setOrderMsg("descending");
+        break;
+      case "ASC":
+        setOrderMsg("ascending");
+        break;
+      default:
+        break;
+    }
+  }, [order]);
+
   const handleTopicChange = (selectedTopic) => {
     setTopic(selectedTopic);
   };
@@ -45,8 +60,16 @@ const Articles = () => {
       <ViewTopics onTopicChange={handleTopicChange} />
       <p className="sort_by_msg">
         <div className="topic_msg">{topic}</div> articles sorted by{" "}
-        <div className="order_msg">{message}</div> in ascending order
+        <div className="order_msg">{message}</div> in{" "}
+        <div className="order_msg">{orderMsg}</div> order
       </p>
+      <button
+        className="toggle_order"
+        onClick={() => setOrder(order === "ASC" ? "DESC" : "ASC")}
+      >
+        {orderMsg}
+      </button>
+
       <section className="filter_buttons">
         <p className="sans">filter by:</p>
         <button onClick={() => setSortby("author")}>author</button>
