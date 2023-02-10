@@ -8,12 +8,22 @@ This project runs off a backend API which I built a few weeks ago.
 
 # Link to the deployed version:
 
-# Link to the backend project :
+# Link to the backend project:
 
-provides general info about your app add a brief
-description of what the project is and how to use your app
-includes links to your back end repo
+https://github.com/Mougily/news_portfolio_project
 
-specifies the minimum version of Node required to run locally (check your Node version, node --version and use the major version that you are on)
+# Link to the backend deployed version:
 
-has clear instructions on how to run your project locally (git clone <repo-url>, cd ...)
+https://news-app-mg2a.onrender.com/api
+
+# Node version required to run locally:
+
+v18.12.1
+
+# To run project locally:
+
+fork and clone the repo from GitHub and in the CLI, run the command:
+
+git clone https://github.com/Mougily/nc-news.git
+
+cd into the nc-news file then run 'npm start' in the terminal
