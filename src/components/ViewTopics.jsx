@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../utils/ApiCalls";
-
 import { useNavigate } from "react-router-dom";
 
-const ViewTopics = ({ onTopicChange }) => {
+const ViewTopics = ({ onTopicChange, topic }) => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let navigate = useNavigate();
 
   const routeChange = (path) => {
     navigate(path);
   };
+
+  useEffect(() => {
+    if (topic !== null) {
+      setSelectedTopic(topic);
+    }
+  }, [topic]);
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +28,7 @@ const ViewTopics = ({ onTopicChange }) => {
   }, []);
 
   if (loading) {
-    return <h3 className="caps">loading topics...</h3>;
+    return <h3 className="loading_topics">loading topics...</h3>;
   }
 
   const handleChange = (event) => {
@@ -39,9 +44,13 @@ const ViewTopics = ({ onTopicChange }) => {
 
   return (
     <div>
-      <select className="topics_dropdown" onChange={handleChange}>
-        <option value="">select a topic</option>
-        <option value="">all</option>
+      <select
+        value={selectedTopic}
+        className="topics_dropdown"
+        onChange={handleChange}
+      >
+        <option value={null}>select a topic</option>
+        <option value={null}>all</option>
         {topics.map((topic) => (
           <option key={topic} value={topic}>
             {topic}

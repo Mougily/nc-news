@@ -7,29 +7,76 @@ const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [topic, setTopic] = useState(null);
+  const [sortby, setSortby] = useState("created_at");
+  const [message, setMessage] = useState("date published");
+  const [order, setOrder] = useState("ASC");
+  const [orderMsg, setOrderMsg] = useState("ascending");
 
   useEffect(() => {
+    console.log(topic);
     setLoading(true);
-    getArticles(topic).then((articles) => {
+    getArticles(topic, sortby, order).then((articles) => {
       setArticles(articles);
       setLoading(false);
     });
-  }, [topic]);
+  }, [topic, sortby, order]);
+
+  useEffect(() => {
+    switch (sortby) {
+      case "author":
+        setMessage("author");
+        break;
+      case "created_at":
+        setMessage("date published");
+        break;
+      case "votes":
+        setMessage("most popular");
+        break;
+      default:
+        break;
+    }
+  }, [sortby]);
+
+  useEffect(() => {
+    switch (order) {
+      case "DESC":
+        setOrderMsg("descending");
+        break;
+      case "ASC":
+        setOrderMsg("ascending");
+        break;
+      default:
+        break;
+    }
+  }, [order]);
 
   const handleTopicChange = (selectedTopic) => {
     setTopic(selectedTopic);
   };
-
   if (loading) {
-    return <h3 className="caps">loading topics...</h3>;
+    return <h3 className="loading_topics">loading topics...</h3>;
   }
   return (
     <div>
-      <ViewTopics
-        onTopicChange={handleTopicChange}
-        setLoading={setLoading}
-        loading={loading}
-      />
+      <ViewTopics onTopicChange={handleTopicChange} topic={topic} />
+      <p className="sort_by_msg">
+        <div className="topic_msg">{topic}</div> articles sorted by{" "}
+        <div className="order_msg">{message}</div> in{" "}
+        <div className="order_msg">{orderMsg}</div> order
+      </p>
+      <button
+        className="toggle_order"
+        onClick={() => setOrder(order === "ASC" ? "DESC" : "ASC")}
+      >
+        {orderMsg}
+      </button>
+
+      <section className="filter_buttons">
+        <p className="sans">filter by:</p>
+        <button onClick={() => setSortby("author")}>author</button>
+        <button onClick={() => setSortby("created_at")}>date published</button>
+        <button onClick={() => setSortby("votes")}>most popular</button>
+      </section>
       <ul>
         {" "}
         {articles.map(
