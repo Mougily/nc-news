@@ -2,13 +2,21 @@ import { useEffect, useState } from "react";
 import { getArticleById, getArticleCommentsById } from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder";
+
+import ErrorPage from "./ErrorPage";
+
 import Votes from "./Votes";
+
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
+
+  const [err, setErr] = useState(null);
+  const [error, setError] = useState(null);
+
 
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -20,12 +28,21 @@ const SingleArticle = () => {
     Promise.all([
       getArticleById(article_id),
       getArticleCommentsById(article_id),
-    ]).then(([article, comments]) => {
-      setArticle(article);
-      setComments(comments);
-      setLoading(false);
-    });
+    ])
+      .then(([article, comments]) => {
+        setArticle(article);
+        setComments(comments);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError({ err });
+      });
   }, [article_id]);
+
+
+  if (error) {
+    return <ErrorPage message={error} />;
+  }
 
   if (loading) {
     return <h2>Still loading...</h2>;
