@@ -13,7 +13,6 @@ const Articles = () => {
   const [orderMsg, setOrderMsg] = useState("ascending");
 
   useEffect(() => {
-    console.log(topic);
     setLoading(true);
     getArticles(topic, sortby, order).then((articles) => {
       setArticles(articles);

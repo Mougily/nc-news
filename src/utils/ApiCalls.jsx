@@ -79,3 +79,9 @@ export const deleteComment = (comment_id) => {
     return response.data.comment;
   });
 };
+
+export const getUsers = () => {
+  return apiCaller.get("/users").then((response) => {
+    return response.data.users;
+  });
+};

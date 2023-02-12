@@ -8,6 +8,8 @@ This project runs off a backend API which I built a few weeks ago.
 
 # Link to the deployed version:
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/67cb0ec2-149f-4652-8316-e351681430f4/deploy-status)](https://app.netlify.com/sites/some-real-good-news/deploys)
+
 # Link to the backend project:
 
 https://github.com/Mougily/news_portfolio_project

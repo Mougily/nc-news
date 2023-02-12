@@ -6,9 +6,7 @@ import {
 } from "../utils/ApiCalls";
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder";
-
 import ErrorPage from "./ErrorPage";
-
 import Votes from "./Votes";
 
 const SingleArticle = () => {
